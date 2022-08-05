@@ -1,0 +1,8 @@
+.heading {
+    background-image: linear-gradient(to right, white, blue);
+    color: black;
+    font-size: 30px;
+    text-decoration: underline;
+    text-align: center;
+    font-family: monotype corsiva;
+}
