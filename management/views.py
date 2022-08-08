@@ -19,3 +19,7 @@ class AddSubject(View):
         else:
             return HTTPResponse("<h4>Subject is not added.</h4>")    
 
+def subList(request):
+    data=Subject.objects.all()
+    return render(request,'subList.html',{'mydata':data})              
+

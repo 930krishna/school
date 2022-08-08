@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div>
+    <div style="float:left;">
+        <h1>List Of Subjects</h1>
+    </div>
+    <div style="float:right;">
+        <a class="btn btn-primary top-btn" href="addsub">Add New Subject</a>
+    </div>
+</div>
+<br><br>
+<hr>
+<table border="5" class="table table-info table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Subject Name   
+            </th>
+        </tr>
+    </thead> 
+    <tbody>
+        {% for dt in mydata %}
+        <tr>
+            <td>{{ dt.subject_name }}</td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>  
+</table>    
+{% endblock body %}
+    

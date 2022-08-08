@@ -23,4 +23,5 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('management',include('management.urls')),
     path('addsub',views.AddSubject.as_view(),name='addsub'),
+    path('subList',views.subList,name='subList')
 ]
