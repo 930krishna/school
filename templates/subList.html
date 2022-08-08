@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<div class="row">
 <div>
     <div style="float:left;">
         <h1>List Of Subjects</h1>
@@ -11,21 +12,47 @@
 </div>
 <br><br>
 <hr>
-<table border="5" class="table table-info table-striped table-hover table-bordered">
+<div class="container">
+{% for msg in messages  %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+ {{ msg }}
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<table border="5" class="table table-striped table-hover">
     <thead>
         <tr>
-            <th>Subject Name   
-            </th>
+            <th>#</th>
+            <th>Tite</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
     </thead> 
     <tbody>
+      
         {% for dt in mydata %}
         <tr>
+            <td>{{ forloop.counter0|add:mydata.start_index}}</td>
             <td>{{ dt.subject_name }}</td>
-            
+            <td><a href="#"><button class="btn btn-warning">Update</button></a></td>
+            <td><a href="#"><button class="btn btn-danger">Delete</button></a></td>           
         </tr>
         {% endfor %}
     </tbody>  
-</table>    
+</table>
+<nav>
+  <ul class="pagination pagination-lg">
+      {% for i in mydata.paginator.page_range %}
+      {% if mydata.number == i %}
+        <li class="page-item active" aria-current="page"><span class="page-link">{{ i }}</span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
+</div>
+</div>
 {% endblock body %}
     
