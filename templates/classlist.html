@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1 class= "heading">List of Classes</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Class Name</th>
+            <th>Total Seat</th>
+            <th>Available seat</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dt in mydata %}
+        <tr>
+            <td>{{dt.class_title}}</td>
+            <td>{{dt.total_seat}}</td>
+            <td>{{dt.available_seat}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock body %}

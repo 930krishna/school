@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <h1 class="heading">Addclass</h1>
+<form method="post">
+    {% csrf_token %}
+    <pre>
+    <table>{{myform}}</table>
+            <input type="submit value="added.."/>
+    <pre>
+</form>
+{% endblock body %}
+
+
