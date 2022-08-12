@@ -1,5 +1,7 @@
 from http.client import HTTPResponse
-from django.shortcuts import render,redirect
+from re import search
+from this import s
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.views import View
@@ -34,6 +36,49 @@ def subList(request):
     # returns the desired page object
     page_obj = p.get_page(page_number) 
 
-    context = {'mydata': page_obj}
-    return render(request,'subList.html',context)              
+    return render(request,'subList.html', {'mydata': page_obj})              
+
+
+class SearchSub(View):
+    def get(self,request):
+        return render(request,'subname.html')
+    def post(self,request):
+        ssearch=request.POST['search']
+        sname=request.POST['sub']
+        if(ssearch and sname):
+            data=Subject.objects.filter(sname__exact='sub').filter(ssearch__exact=search)
+        else:
+            return render(request,'search.html')
+
+
+
+class UpdateSub(View):
+    def get(self,request,id):
+        obj=get_object_or_404(Subject,id=id)
+        myform=UpdateForm(instance=obj)
+        return render(request,'updsub.html',{'myform':myform})
+    def post(self,request,id):
+        obj=get_object_or_404(Subject,id=id)
+        myform=UpdateForm(request.POST,instance=obj)
+        if myform.is_valid():
+            myform.save()
+            return redirect('subList')
+
+class DeleteSub(View):
+    def get(self,request,id):
+        obj=get_object_or_404(Subject,id=id)
+        myform=DeleteForm(instance=obj)
+        return render(request,'delsub.html',{'myform':myform})
+    def post(self,request,id):
+        obj=get_object_or_404(Subject,id=id)
+        obj.delete()
+        return redirect('subList')               
+
+
+            
+        
+
+                 
+
+
 

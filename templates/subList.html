@@ -24,7 +24,7 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Tite</th>
+            <th>Title</th>
             <th>Update</th>
             <th>Delete</th>
         </tr>
@@ -35,12 +35,13 @@
         <tr>
             <td>{{ forloop.counter0|add:mydata.start_index}}</td>
             <td>{{ dt.subject_name }}</td>
-            <td><a href="#"><button class="btn btn-warning">Update</button></a></td>
-            <td><a href="#"><button class="btn btn-danger">Delete</button></a></td>           
+            <td><a href="UpdateSub"><button class="btn btn-warning">Update</button></a></td>
+            <td><a href="DeleteSub"><button class="btn btn-danger">Delete</button></a></td>           
         </tr>
         {% endfor %}
     </tbody>  
 </table>
+
 <nav>
   <ul class="pagination pagination-lg">
       {% for i in mydata.paginator.page_range %}

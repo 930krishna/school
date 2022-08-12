@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1 class="heading">Update Subject </h1> <hr>
+<form method='post'>
+    {% csrf_token %}
+    <pre> 
+        <table>{{ myform }}</table>
+                <input type="submit" value="Update"> &nbsp; <input type="submit" value="Cancel">
+                
+    </pre>
+</form>   
+{% endblock body %}
