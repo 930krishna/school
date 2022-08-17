@@ -24,20 +24,44 @@ class AddSubject(View):
         else:
             return HTTPResponse("<h4>Subject is not added.</h4>")    
 
-def subList(request):
-    data=Subject.objects.all()
+# def subList(request):
+#     data=Subject.objects.all()
 
-    # creating a paginator object
-    p = Paginator(data, 5)
+#     # creating a paginator object
+#     p = Paginator(data, 5)
 
-    # getting the desired page number from url
-    page_number = request.GET.get('page')
+#     # getting the desired page number from url
+#     page_number = request.GET.get('page')
 
-    # returns the desired page object
-    page_obj = p.get_page(page_number) 
+#     # returns the desired page object
+#     page_obj = p.get_page(page_number) 
 
-    return render(request,'subList.html', {'mydata': page_obj})              
+#     return render(request,'subList.html', {'mydata': page_obj})              
 
+class SubList(View):
+    def get(self,request):
+        data=Subject.objects.all()
+        # creating a paginator object
+        p = Paginator(data, 5)
+
+        # getting the desired page number from url
+        page_number = request.GET.get('page')
+
+        # returns the desired page object
+        page_obj = p.get_page(page_number) 
+        return render(request,'subList.html', {'mydata': page_obj})              
+    def post(self,request):
+        subject = request.POST['subject']
+        data = Subject.objects.filter(subject_name__exact=subject)
+        # creating a paginator object
+        p = Paginator(data, 5)
+
+        # getting the desired page number from url
+        page_number = request.GET.get('page')
+
+        # returns the desired page object
+        page_obj = p.get_page(page_number) 
+        return render(request,'subList.html', {'mydata': page_obj})
 
 class SearchSub(View):
     def get(self,request):
