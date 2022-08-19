@@ -16,7 +16,7 @@
 <form class="row g-3" method="post" style="float: right; padding-right: 15px;">
     {% csrf_token %}
     <div class="col-auto">
-      <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject Name">      
+      <input type="text" class="form-control" id="subject" name="subject" value="{{ subject }}" placeholder="Enter Subject Name">      
 
     </div>
     <div class="col-auto">
@@ -44,18 +44,23 @@
         </tr>
     </thead> 
     <tbody>
-      
+      {% if mydata %}
         {% for dt in mydata %}
         <tr>
             <td>{{ forloop.counter0|add:mydata.start_index}}</td>
             <td>{{ dt.subject_name }}</td>
             <td><a href="UpdateSub"><button class="btn btn-warning">Update</button></a></td>
             <td><a href="DeleteSub"><button class="btn btn-danger">Delete</button></a></td>           
-        </tr>
+        </tr>        
         {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="4" style="color:red; text-align:center;">No record found!</td>           
+        </tr>
+      {% endif %}        
     </tbody>  
 </table>
-
+{% if mydata %}
 <nav>
   <ul class="pagination pagination-lg">
       {% for i in mydata.paginator.page_range %}
@@ -67,6 +72,7 @@
     {% endfor %}
   </ul>
 </nav>
+{% endif %}
 </div>
 </div>
 {% endblock body %}

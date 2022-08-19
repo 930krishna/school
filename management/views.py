@@ -52,7 +52,10 @@ class SubList(View):
         return render(request,'subList.html', {'mydata': page_obj})              
     def post(self,request):
         subject = request.POST['subject']
-        data = Subject.objects.filter(subject_name__exact=subject)
+        if subject:
+            data = Subject.objects.filter(subject_name__exact=subject)
+        else:
+            data = Subject.objects.all() 
         # creating a paginator object
         p = Paginator(data, 5)
 
@@ -61,7 +64,7 @@ class SubList(View):
 
         # returns the desired page object
         page_obj = p.get_page(page_number) 
-        return render(request,'subList.html', {'mydata': page_obj})
+        return render(request,'subList.html', {'mydata': page_obj, 'subject': subject})
 
 class SearchSub(View):
     def get(self,request):
