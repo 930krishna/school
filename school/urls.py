@@ -26,9 +26,11 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('home',views.home,name='home'),
     path('management',include('management.urls')),
+
+    # CRUD operation for subject
     path('addsub',views.AddSubject.as_view(),name='addsub'),
     path('subList',views.SubList.as_view(),name='subList'),
     path('SearchSub',views.SearchSub.as_view(),name='searchsub'),
-    #path('updsub/<id>',views.UpdateS ub.as_view(),name='updsub'),
+    path('updsub<id>',views.UpdateSub.as_view(),name='updsub'),
     #path('delsub/<id>',views.DeleteSub.as_view(),name='delsub'),
 ]
