@@ -8,8 +8,8 @@ class AddClass(models.Model):
     class_title=models.CharField(max_length=30)
     total_seat=models.IntegerField()
     available_seat=models.IntegerField()
-    # def __str__(self):
-    #     return self.class_title+"-"+str(self.total_seat)+"-"+str(self.available_seat)
+    def __str__(self):
+        return self.class_title+"-"+str(self.total_seat)+"-"+str(self.available_seat)
 
 
 

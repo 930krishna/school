@@ -15,7 +15,7 @@ class AddClasses(View):
         myform=AddClassform(request.POST)
         if myform.is_valid():
             myform.save()
-            return redirect('home')
+            return HttpResponse("<h1>class Added..")
         else:
             return HttpResponse("<h5>Data could not be added")
 
